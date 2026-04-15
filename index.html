@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nevertheless — A Gospel Publication</title>
+
+  <!-- Primary meta -->
+  <meta name="description" content="A publication by Samuel Umoren — creative essays on the gospel, for anyone who keeps walking even when the road resists.">
+  <link rel="canonical" href="https://neverthelesspress.vercel.app/">
+
+  <!-- Open Graph (WhatsApp, Facebook, iMessage) -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://neverthelesspress.vercel.app/">
+  <meta property="og:title"       content="Nevertheless — A Gospel Publication">
+  <meta property="og:description" content="A publication by Samuel Umoren — creative essays on the gospel, for anyone who keeps walking even when the road resists.">
+  <meta property="og:image"       content="https://neverthelesspress.vercel.app/static/image.png">
+  <meta property="og:image:width"  content="1895">
+  <meta property="og:image:height" content="948">
+  <meta property="og:image:type"   content="image/png">
+  <meta property="og:site_name"   content="Nevertheless">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Nevertheless — A Gospel Publication">
+  <meta name="twitter:description" content="A publication by Samuel Umoren — creative essays on the gospel, for anyone who keeps walking even when the road resists.">
+  <meta name="twitter:image"       content="https://neverthelesspress.vercel.app/static/image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,200;1,9..144,400;1,9..144,700;1,9..144,900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0f0e0c;
+      --cream: #f5f0e8;
+      --gold: #c9a84c;
+      --gold-dim: rgba(201, 168, 76, 0.18);
+      --gold-mid: rgba(201, 168, 76, 0.45);
+      --rust: #b5451b;
+      --cream-faint: rgba(245, 240, 232, 0.08);
+      --cream-mid: rgba(245, 240, 232, 0.55);
+      --cream-low: rgba(245, 240, 232, 0.28);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--ink);
+      color: var(--cream);
+      font-family: 'Crimson Pro', Georgia, serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* ─── COVER ─── */
+    .cover {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* background texture / radial glow */
+    .cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 60%, rgba(201, 168, 76, 0.05) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 20%, rgba(181, 69, 27, 0.04) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* faint grain overlay */
+    .cover::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 200px 200px;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    /* ─── TOP BAR ─── */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2rem 3.5rem;
+      border-bottom: 1px solid rgba(201, 168, 76, 0.18);
+      position: relative;
+      z-index: 10;
+    }
+
+    .top-bar-left {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--cream-low);
+    }
+
+    .top-bar-right {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      color: var(--cream-low);
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    /* ─── MASTHEAD ─── */
+    .masthead-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+      padding: 4rem 3.5rem 0;
+      gap: 0;
+    }
+
+    .vol-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .vol-label::before,
+    .vol-label::after {
+      content: '';
+      display: inline-block;
+      width: 40px;
+      height: 1px;
+      background: var(--gold-mid);
+    }
+
+    .masthead-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(5.5rem, 18vw, 18rem);
+      font-weight: 900;
+      line-height: 0.85;
+      letter-spacing: -0.025em;
+      color: var(--cream);
+      position: relative;
+    }
+
+    /* large ghost letters behind masthead */
+    .masthead-ghost {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(7rem, 22vw, 22rem);
+      font-weight: 900;
+      font-style: italic;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(201, 168, 76, 0.07);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+    }
+
+    .masthead-rule {
+      width: 100%;
+      max-width: 680px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-mid), transparent);
+      margin: 1.4rem 0;
+    }
+
+    .masthead-sub {
+      font-family: 'Crimson Pro', serif;
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--cream-mid);
+      max-width: 42ch;
+      line-height: 1.6;
+      letter-spacing: 0.01em;
+    }
+
+    /* ─── BOTTOM SECTION ─── */
+    .cover-bottom {
+      position: relative;
+      z-index: 10;
+      padding: 5vw 3.5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .section-rule {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    .section-rule::after {
+      content: '';
+      flex: 1;
+      max-width: 100px;
+      height: 1px;
+      background: var(--gold-mid);
+    }
+
+    /* ─── FEATURED ISSUE ─── */
+    .feature-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: rgba(201, 168, 76, 0.12);
+      max-width: 1100px;
+    }
+
+    .feature-left {
+      background: var(--ink);
+      padding: 3.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 2.5rem;
+    }
+
+    .issue-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(201, 168, 76, 0.3);
+      padding: 0.4rem 0.9rem;
+      width: fit-content;
+    }
+
+    .issue-badge span {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .feature-headline {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      color: var(--cream);
+    }
+
+    .feature-headline em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .feature-desc {
+      font-family: 'Crimson Pro', serif;
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.72;
+      color: var(--cream-mid);
+      max-width: 40ch;
+    }
+
+    .feature-read-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--ink);
+      background: var(--gold);
+      padding: 0.85rem 1.8rem;
+      width: fit-content;
+      transition: background 0.2s ease, color 0.2s ease;
+      position: relative;
+    }
+
+    .feature-read-btn::after {
+      content: '→';
+      font-size: 1rem;
+      letter-spacing: 0;
+      transition: transform 0.2s ease;
+    }
+
+    .feature-read-btn:hover {
+      background: var(--cream);
+    }
+
+    .feature-read-btn:hover::after {
+      transform: translateX(4px);
+    }
+
+    .feature-right {
+      background: #0c0a08;
+      padding: 3.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-right::before {
+      content: '';
+      position: absolute;
+      bottom: -15%;
+      right: -10%;
+      width: 80%;
+      height: 80%;
+      background: radial-gradient(ellipse, rgba(201, 168, 76, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cover-verse-number {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(10rem, 22vw, 22rem);
+      font-weight: 900;
+      font-style: italic;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(245, 240, 232, 0.06);
+      line-height: 0.85;
+      user-select: none;
+      position: absolute;
+      right: -3%;
+      bottom: -5%;
+    }
+
+    .feature-verse-block {
+      position: relative;
+      z-index: 2;
+    }
+
+    .verse-lead {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.1rem, 2.2vw, 1.7rem);
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.5;
+      color: rgba(245, 240, 232, 0.75);
+      max-width: 36ch;
+      margin-bottom: 1rem;
+    }
+
+    .verse-cite {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+    }
+
+    .feature-theme-tags {
+      display: flex;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 2;
+      margin-top: 3rem;
+    }
+
+    .theme-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cream-low);
+      border: 1px solid rgba(245, 240, 232, 0.12);
+      padding: 0.35rem 0.8rem;
+    }
+
+    /* ─── COMING SOON ─── */
+    .coming-row {
+      max-width: 1100px;
+      display: flex;
+      align-items: stretch;
+      gap: 2px;
+      background: rgba(245, 240, 232, 0.06);
+    }
+
+    .coming-main {
+      flex: 1;
+      background: var(--ink);
+      padding: 2.5rem 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      justify-content: center;
+    }
+
+    .coming-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--rust);
+    }
+
+    .coming-text {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+      font-style: italic;
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--cream);
+      max-width: 24ch;
+    }
+
+    .coming-sub {
+      font-family: 'Crimson Pro', serif;
+      font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--cream-low);
+      max-width: 44ch;
+      line-height: 1.65;
+    }
+
+    .coming-side {
+      width: 260px;
+      flex-shrink: 0;
+      background: #0a0908;
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1.8rem;
+    }
+
+    .pulse-dot {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      color: var(--cream-low);
+    }
+
+    .pulse-dot::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--rust);
+      flex-shrink: 0;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+
+    .coming-nums {
+      font-family: 'Fraunces', serif;
+      font-size: 3.5rem;
+      font-weight: 900;
+      font-style: italic;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(245, 240, 232, 0.1);
+      line-height: 1;
+    }
+
+    /* ─── FOOTER ─── */
+    .cover-footer {
+      position: relative;
+      z-index: 10;
+      padding: 1.6rem 3.5rem;
+      border-top: 1px solid rgba(245, 240, 232, 0.07);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-colophon {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      color: rgba(245, 240, 232, 0.2);
+    }
+
+    .footer-mark {
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      font-weight: 700;
+      color: rgba(201, 168, 76, 0.4);
+      letter-spacing: -0.01em;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0);    }
+    }
+
+    .vol-label     { animation: fadeUp 0.7s ease 0.1s both; }
+    .masthead-title { animation: fadeUp 0.7s ease 0.25s both; }
+    .masthead-rule  { animation: fadeUp 0.6s ease 0.4s both; }
+    .masthead-sub   { animation: fadeUp 0.6s ease 0.5s both; }
+    .section-rule   { animation: fadeUp 0.6s ease 0.65s both; }
+    .feature-block  { animation: fadeUp 0.7s ease 0.75s both; }
+    .coming-row     { animation: fadeUp 0.6s ease 0.9s both; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 860px) {
+      .top-bar { padding: 1.5rem 2rem; }
+      .top-bar-right { display: none; }
+
+      .masthead-wrap { padding: 3rem 2rem 0; }
+
+      .cover-bottom { padding: 4rem 2rem 3rem; }
+
+      .feature-block { grid-template-columns: 1fr; }
+
+      .feature-left  { padding: 2.5rem 2rem; }
+      .feature-right { padding: 2.5rem 2rem; min-height: 280px; }
+
+      .coming-row { flex-direction: column; }
+      .coming-side { width: 100%; flex-direction: row; align-items: center; padding: 1.8rem 2rem; }
+
+      .cover-footer { padding: 1.4rem 2rem; }
+    }
+
+    @media (max-width: 520px) {
+      .feature-headline { font-size: clamp(2.4rem, 11vw, 4rem); }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="cover">
+
+    <!-- TOP BAR -->
+    <header class="top-bar">
+      <div class="top-bar-left">A Gospel Publication &nbsp;·&nbsp; Est. 2026</div>
+      <div class="top-bar-right">
+        <span>By Samuel Umoren</span>
+        <span>·</span>
+        <span>Issue No. 001 Available Now</span>
+      </div>
+    </header>
+
+    <!-- MASTHEAD -->
+    <main class="masthead-wrap">
+      <div class="masthead-ghost" aria-hidden="true">Nevertheless</div>
+
+      <div class="vol-label">Gospel&nbsp;&nbsp;·&nbsp;&nbsp;Faith&nbsp;&nbsp;·&nbsp;&nbsp;The&nbsp;Written&nbsp;Word</div>
+
+      <h1 class="masthead-title">Nevertheless</h1>
+
+      <div class="masthead-rule"></div>
+
+      <p class="masthead-sub">
+        A publication for people who still believe — creative essays on the gospel,
+        for anyone who keeps walking even when the road resists.
+      </p>
+    </main>
+
+    <!-- BOTTOM: FEATURE + COMING SOON -->
+    <div class="cover-bottom">
+
+      <div class="section-rule">First Publication</div>
+
+      <!-- Featured Issue Card -->
+      <div class="feature-block">
+        <div class="feature-left">
+          <div>
+            <div class="issue-badge"><span></span>Issue No. 001&nbsp;·&nbsp;April 2026</div>
+          </div>
+
+          <div>
+            <h2 class="feature-headline">The<br><em>Resilient</em><br>Jesus</h2>
+          </div>
+
+          <p class="feature-desc">
+            Jesus is not just an example in suffering — he is an example in resilience.
+            Those are not the same thing. A study in what it looks like to keep moving
+            when the world pushes back.
+          </p>
+
+          <a href="the-resilient-jesus.html" class="feature-read-btn">Read the Issue</a>
+        </div>
+
+        <div class="feature-right">
+          <div class="feature-verse-block">
+            <p class="verse-lead">
+              "In this world you will have trouble.<br>
+              But take heart — I have overcome the world."
+            </p>
+            <div class="verse-cite">John 16:33 &nbsp;·&nbsp; The Foundation</div>
+          </div>
+
+          <div class="feature-theme-tags">
+            <span class="theme-tag">Resilience</span>
+            <span class="theme-tag">Suffering</span>
+            <span class="theme-tag">Foundation</span>
+            <span class="theme-tag">Community</span>
+            <span class="theme-tag">Purpose</span>
+            <span class="theme-tag">Hebrews 4:15</span>
+          </div>
+
+          <div class="cover-verse-number" aria-hidden="true">I</div>
+        </div>
+      </div>
+
+      <!-- Coming Soon Bar -->
+      <div class="coming-row">
+        <div class="coming-main">
+          <div class="coming-eyebrow">On the Horizon</div>
+          <div class="coming-text">More is coming soon.</div>
+          <p class="coming-sub">
+            New issues in the works — each one a different window into the gospel, written for
+            the person who thinks in layers and wants their faith to hold under pressure.
+          </p>
+        </div>
+        <div class="coming-side">
+          <div class="pulse-dot">Publishing in Progress</div>
+          <div class="coming-nums">II</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="cover-footer">
+      <div class="footer-colophon">
+        Nevertheless Press &nbsp;·&nbsp; A Samuel Umoren Publication &nbsp;·&nbsp; 2026
+      </div>
+      <div class="footer-mark">Nevertheless.</div>
+    </footer>
+
+  </div>
+</body>
+
+</html>
