@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Resilient Jesus — MDWK Edition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,200;1,9..144,400;1,9..144,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0f0e0c;
+      --cream: #f5f0e8;
+      --gold: #c9a84c;
+      --rust: #b5451b;
+      --crimson: #7a1c2e;
+      --midnight: #0e1628;
+      --slate: #1f3050;
+      --forest: #1a3028;
+      --teal: #0d2b2e;
+      --rose: #4a1428;
+      --amber: #c47b2a;
+      --term-bg: #0a0f05;
+      --term-green: #4cff72;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--ink);
+      font-family: 'Crimson Pro', Georgia, serif;
+      color: var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* MASTHEAD */
+    .masthead {
+      background: var(--ink);
+      padding: 2rem 3rem 0;
+      border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.5rem;
+    }
+
+    .masthead-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    .masthead-rule {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 0.4rem 0;
+    }
+
+    .masthead-meta {
+      display: flex;
+      gap: 2rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      color: rgba(245, 240, 232, 0.45);
+      padding-bottom: 1.2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* HERO */
+    .hero {
+      background: var(--ink);
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      padding: 5vw 8vw 8vw;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 60vw;
+      height: 60vw;
+      background: radial-gradient(ellipse, rgba(201, 168, 76, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-number {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(18rem, 35vw, 42rem);
+      font-weight: 900;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(201, 168, 76, 0.15);
+      line-height: 0.8;
+      position: absolute;
+      right: -2vw;
+      top: 5vh;
+      user-select: none;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      position: relative;
+      z-index: 2;
+      padding-top: 20vh;
+    }
+
+    .hero-kicker {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-headline {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(4rem, 12vw, 12rem);
+      font-weight: 900;
+      line-height: 0.88;
+      color: var(--cream);
+      letter-spacing: -0.02em;
+    }
+
+    .hero-headline em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-subhead {
+      font-family: 'Crimson Pro', serif;
+      font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(245, 240, 232, 0.6);
+      max-width: 45ch;
+      margin-top: 2.5rem;
+      line-height: 1.55;
+      border-left: 2px solid var(--gold);
+      padding-left: 1.5rem;
+    }
+
+    .hero-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding-top: 4rem;
+      border-top: 1px solid rgba(201, 168, 76, 0.2);
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-verse {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: rgba(245, 240, 232, 0.3);
+    }
+
+    .hero-scroll {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: rgba(201, 168, 76, 0.4);
+    }
+
+    /* SPREAD BASE */
+    .spread {
+      min-height: 100vh;
+      padding: clamp(3rem, 8vw, 7rem) clamp(2rem, 8vw, 8rem);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .spread-num {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-style: italic;
+      position: absolute;
+      user-select: none;
+      pointer-events: none;
+      opacity: 0.06;
+      line-height: 1;
+    }
+
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      margin-bottom: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.25;
+      max-width: 80px;
+    }
+
+    .section-headline {
+      font-family: 'Fraunces', serif;
+      line-height: 0.92;
+      letter-spacing: -0.02em;
+    }
+
+    .body-text {
+      font-family: 'Crimson Pro', serif;
+      font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+      font-weight: 300;
+      line-height: 1.78;
+      max-width: 62ch;
+    }
+
+    /* PROBLEM */
+    .s-problem {
+      background: var(--cream);
+      color: var(--ink);
+    }
+
+    .s-problem .spread-num {
+      font-size: clamp(16rem, 40vw, 55rem);
+      color: var(--ink);
+      bottom: -8%;
+      right: -2%;
+    }
+
+    .s-problem .section-label {
+      color: var(--rust);
+    }
+
+    .s-problem .section-headline {
+      font-size: clamp(3rem, 8vw, 8rem);
+      color: var(--ink);
+      margin-bottom: 2.5rem;
+    }
+
+    .s-problem .body-text {
+      color: var(--ink);
+    }
+
+    .drop-cap::first-letter {
+      font-family: 'Fraunces', serif;
+      font-size: 5.5rem;
+      font-weight: 900;
+      float: left;
+      line-height: 0.8;
+      margin-right: 0.15em;
+      margin-top: 0.08em;
+      color: var(--rust);
+    }
+
+    .prayer-box {
+      background: var(--ink);
+      color: var(--cream);
+      padding: 2rem 2.5rem;
+      margin-top: 3rem;
+      max-width: 55ch;
+      border-left: 4px solid var(--gold);
+      font-family: 'Crimson Pro', serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      line-height: 1.65;
+      position: relative;
+      z-index: 2;
+    }
+
+    .prayer-box cite {
+      display: block;
+      margin-top: 1rem;
+      font-style: normal;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+    }
+
+    /* ASSURANCE */
+    .s-assurance {
+      background: var(--crimson);
+      color: var(--cream);
+    }
+
+    .s-assurance .spread-num {
+      font-size: clamp(16rem, 38vw, 52rem);
+      color: var(--cream);
+      top: -5%;
+      left: -3%;
+    }
+
+    .s-assurance .section-headline {
+      font-size: clamp(3.5rem, 9vw, 10rem);
+      color: var(--cream);
+      margin-bottom: 3rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .verse-triptych {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(245, 240, 232, 0.15);
+      position: relative;
+      z-index: 2;
+      margin-top: 3rem;
+    }
+
+    .verse-card {
+      background: rgba(245, 240, 232, 0.04);
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .verse-card.mid {
+      background: rgba(245, 240, 232, 0.07);
+    }
+
+    .verse-ref-big {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.2rem, 2.5vw, 2rem);
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .verse-text {
+      font-family: 'Crimson Pro', serif;
+      font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+      font-style: italic;
+      color: rgba(245, 240, 232, 0.8);
+      line-height: 1.65;
+    }
+
+    .scripture-ref {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      opacity: 0.55;
+    }
+
+    .alert-stamp {
+      position: absolute;
+      bottom: 8%;
+      right: 6%;
+      width: clamp(8rem, 14vw, 14rem);
+      height: clamp(8rem, 14vw, 14rem);
+      border: 3px solid var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: 'Fraunces', serif;
+      font-size: clamp(0.7rem, 1.2vw, 1rem);
+      font-style: italic;
+      color: var(--gold);
+      padding: 1rem;
+      line-height: 1.3;
+      transform: rotate(-12deg);
+      z-index: 2;
+    }
+
+    /* QUESTION */
+    .s-question {
+      background: var(--midnight);
+      color: var(--cream);
+      text-align: center;
+      align-items: center;
+    }
+
+    .s-question .spread-num {
+      font-size: clamp(20rem, 50vw, 70rem);
+      color: var(--cream);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .s-question .section-headline {
+      font-size: clamp(2.8rem, 7vw, 9rem);
+      color: var(--cream);
+      position: relative;
+      z-index: 2;
+      max-width: 18ch;
+      margin: 0 auto 3rem;
+    }
+
+    .s-question .section-headline em {
+      color: var(--gold);
+      display: block;
+    }
+
+    .verse-pull-center {
+      border-top: 1px solid rgba(245, 240, 232, 0.15);
+      border-bottom: 1px solid rgba(245, 240, 232, 0.15);
+      padding: 2.5rem 2rem;
+      max-width: 50ch;
+      position: relative;
+      z-index: 2;
+    }
+
+    .verse-pull-center p {
+      font-family: 'Crimson Pro', serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      line-height: 1.6;
+      color: rgba(245, 240, 232, 0.75);
+      margin-bottom: 1rem;
+    }
+
+    .hebrews-callout {
+      margin-top: 2.5rem;
+      background: rgba(201, 168, 76, 0.08);
+      border: 1px solid rgba(201, 168, 76, 0.3);
+      padding: 2rem 2.5rem;
+      max-width: 55ch;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hebrews-callout p {
+      font-family: 'Crimson Pro', serif;
+      font-size: clamp(1rem, 1.8vw, 1.3rem);
+      line-height: 1.75;
+      color: rgba(245, 240, 232, 0.85);
+    }
+
+    .hebrews-callout cite {
+      display: block;
+      margin-top: 0.8rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      font-style: normal;
+    }
+
+    /* FOUNDATION */
+    .s-foundation {
+      background: var(--slate);
+      color: var(--cream);
+    }
+
+    .s-foundation .spread-num {
+      font-size: clamp(14rem, 32vw, 45rem);
+      color: var(--cream);
+      top: -5%;
+      right: -3%;
+    }
+
+    .s-foundation .section-headline {
+      font-size: clamp(3rem, 8vw, 9rem);
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .foundation-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: rgba(245, 240, 232, 0.1);
+      margin-top: 3rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .foundation-cell {
+      background: var(--slate);
+      padding: 2.5rem;
+    }
+
+    .foundation-cell.dark {
+      background: rgba(14, 22, 40, 0.6);
+    }
+
+    .foundation-cell h4 {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .foundation-cell p {
+      font-family: 'Crimson Pro', serif;
+      font-size: clamp(1rem, 1.6vw, 1.2rem);
+      line-height: 1.78;
+      color: rgba(245, 240, 232, 0.8);
+    }
+
+    /* DAILY */
+    .s-daily {
+      background: var(--forest);
+      color: var(--cream);
+    }
+
+    .s-daily .spread-num {
+      font-size: clamp(14rem, 30vw, 44rem);
+      color: var(--cream);
+      bottom: -8%;
+      left: -3%;
+    }
+
+    .s-daily .section-headline {
+      font-size: clamp(2.8rem, 7vw, 8rem);
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .s-daily .body-text {
+      position: relative;
+      z-index: 2;
+      margin-top: 2rem;
+      color: rgba(245, 240, 232, 0.82);
+    }
+
+    .mandate-line {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-style: italic;
+      color: #5ecb8a;
+      margin-top: 2.5rem;
+      border-left: 3px solid #5ecb8a;
+      padding-left: 1.5rem;
+      position: relative;
+      z-index: 2;
+      max-width: 45ch;
+      line-height: 1.45;
+    }
+
+    /* FLEXIBILITY */
+    .s-flexibility {
+      background: #1c1206;
+      color: var(--cream);
+      position: relative;
+    }
+
+    .s-flexibility::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 40%, rgba(196, 123, 42, 0.18) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .s-flexibility .spread-num {
+      font-size: clamp(14rem, 30vw, 44rem);
+      color: var(--amber);
+      top: -5%;
+      right: -3%;
+    }
+
+    .s-flexibility .section-headline {
+      font-size: clamp(3rem, 8vw, 9rem);
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .flex-rule {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-top: 3rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .flex-col h4 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      font-style: italic;
+      color: var(--amber);
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid rgba(196, 123, 42, 0.3);
+    }
+
+    .flex-col p {
+      font-family: 'Crimson Pro', serif;
+      font-size: clamp(1rem, 1.6vw, 1.2rem);
+      line-height: 1.78;
+      color: rgba(245, 240, 232, 0.8);
+      margin-bottom: 1rem;
+    }
+
+    .prov-stamp {
+      margin-top: 3rem;
+      position: relative;
+      z-index: 2;
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.1rem, 2vw, 1.6rem);
+      font-style: italic;
+      color: var(--gold);
+      max-width: 50ch;
+      line-height: 1.5;
+    }
+
+    .prov-stamp cite {
+      display: block;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: rgba(201, 168, 76, 0.5);
+      font-style: normal;
+      margin-top: 0.6rem;
+    }
+
+    /* LOAD */
+    .s-load {
+      background: var(--rose);
+      color: var(--cream);
+    }
+
+    .s-load .spread-num {
+      font-size: clamp(14rem, 32vw, 48rem);
+      color: var(--cream);
+      bottom: -10%;
+      right: -3%;
+    }
+
+    .s-load .section-headline {
+      font-size: clamp(3rem, 7.5vw, 9rem);
+      margin-bottom: 2.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .load-stats {
+      display: flex;
+      gap: 4rem;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 2;
+    }
+
+    .stat-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .stat-big {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 0.9;
+    }
+
+    .stat-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      color: rgba(245, 240, 232, 0.5);
+      max-width: 16ch;
+      line-height: 1.6;
+    }
+
+    .s-load .body-text {
+      position: relative;
+      z-index: 2;
+      margin-top: 3rem;
+      color: rgba(245, 240, 232, 0.82);
+    }
+
+    .community-refs {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 2;
+    }
+
+    .ref-badge {
+      border: 1px solid rgba(245, 240, 232, 0.2);
+      padding: 0.4rem 1rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      color: rgba(245, 240, 232, 0.6);
+    }
+
+    /* PURPOSE */
+    .s-purpose {
+      background: var(--teal);
+      color: var(--cream);
+      text-align: center;
+      align-items: center;
+    }
+
+    .s-purpose .spread-num {
+      font-size: clamp(16rem, 38vw, 55rem);
+      color: var(--cream);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .s-purpose .section-headline {
+      font-size: clamp(2.5rem, 7vw, 8.5rem);
+      max-width: 16ch;
+      margin: 0 auto 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .purpose-trio {
+      display: flex;
+      flex-direction: column;
+      max-width: 52ch;
+      position: relative;
+      z-index: 2;
+      margin: 2rem auto 0;
+    }
+
+    .purpose-item {
+      padding: 1.8rem 2rem;
+      border-bottom: 1px solid rgba(245, 240, 232, 0.1);
+      text-align: left;
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+    }
+
+    .purpose-item:last-child {
+      border-bottom: none;
+    }
+
+    .purpose-icon {
+      font-family: 'Fraunces', serif;
+      font-size: 2.5rem;
+      font-style: italic;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      flex-shrink: 0;
+      width: 2rem;
+    }
+
+    .purpose-item p {
+      font-family: 'Crimson Pro', serif;
+      font-size: clamp(1rem, 1.7vw, 1.25rem);
+      line-height: 1.72;
+      color: rgba(245, 240, 232, 0.85);
+    }
+
+    /* TERMINAL */
+    .s-terminal {
+      background: var(--term-bg);
+      color: var(--term-green);
+      font-family: 'Space Mono', monospace;
+    }
+
+    .s-terminal .spread-num {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(14rem, 30vw, 44rem);
+      color: var(--term-green);
+      top: -5%;
+      right: -3%;
+      font-style: normal;
+    }
+
+    .s-terminal .section-label {
+      color: rgba(76, 255, 114, 0.5);
+      font-size: 0.6rem;
+    }
+
+    .terminal-header {
+      font-size: clamp(2.5rem, 6vw, 6rem);
+      font-weight: 700;
+      color: var(--term-green);
+      line-height: 1;
+      position: relative;
+      z-index: 2;
+      margin-bottom: 3rem;
+    }
+
+    .terminal-body {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      z-index: 2;
+      max-width: 65ch;
+    }
+
+    .cmd-line {
+      display: flex;
+      gap: 1.5rem;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid rgba(76, 255, 114, 0.08);
+      align-items: flex-start;
+    }
+
+    .cmd-line:last-child {
+      border-bottom: none;
+    }
+
+    .cmd-num {
+      color: rgba(76, 255, 114, 0.35);
+      font-size: 0.8rem;
+      flex-shrink: 0;
+      padding-top: 0.1em;
+      width: 1.5rem;
+    }
+
+    .cmd-prompt {
+      color: rgba(76, 255, 114, 0.5);
+      flex-shrink: 0;
+      font-size: 0.9rem;
+    }
+
+    .cmd-text {
+      font-size: clamp(0.9rem, 1.6vw, 1.1rem);
+      line-height: 1.5;
+      color: var(--term-green);
+    }
+
+    .cmd-sub {
+      display: block;
+      font-size: 0.75rem;
+      color: rgba(76, 255, 114, 0.45);
+      margin-top: 0.35rem;
+    }
+
+    .cursor {
+      animation: blink 1.1s step-end infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0
+      }
+    }
+
+    /* CLOSER */
+    .s-closer {
+      background: var(--cream);
+      color: var(--ink);
+      text-align: center;
+      align-items: center;
+      min-height: 80vh;
+    }
+
+    .s-closer .section-headline {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(4rem, 14vw, 16rem);
+      font-style: italic;
+      line-height: 0.88;
+      color: var(--ink);
+      position: relative;
+      z-index: 2;
+      margin-bottom: 3rem;
+      letter-spacing: -0.02em;
+    }
+
+    .nevertheless-line {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      color: var(--rust);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .closing-body {
+      max-width: 48ch;
+      position: relative;
+      z-index: 2;
+    }
+
+    .closing-body p {
+      font-family: 'Crimson Pro', serif;
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      line-height: 1.78;
+      color: rgba(15, 14, 12, 0.75);
+    }
+
+    .gold-rule {
+      width: 60px;
+      height: 2px;
+      background: var(--gold);
+      margin: 2rem auto;
+    }
+
+    .colophon {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(15, 14, 12, 0.12);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: rgba(15, 14, 12, 0.3);
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-content>* {
+      animation: fadeUp 0.8s ease forwards;
+      opacity: 0;
+    }
+
+    .hero-content>*:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .hero-content>*:nth-child(2) {
+      animation-delay: 0.3s;
+    }
+
+    .hero-content>*:nth-child(3) {
+      animation-delay: 0.5s;
+    }
+
+    .hero-bottom {
+      animation: fadeUp 0.8s ease 0.7s forwards;
+      opacity: 0;
+    }
+
+    @media (max-width: 768px) {
+      .verse-triptych {
+        grid-template-columns: 1fr;
+      }
+
+      .foundation-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .flex-rule {
+        grid-template-columns: 1fr;
+      }
+
+      .load-stats {
+        gap: 2.5rem;
+      }
+
+      .spread {
+        padding: 3rem 1.8rem;
+      }
+
+      .masthead {
+        padding: 1.5rem 1.8rem 0;
+      }
+
+      .alert-stamp {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        margin: 3rem auto 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="masthead">
+    <div class="masthead-label">MDWK with PEO · Devotional</div>
+    <div class="masthead-rule"></div>
+    <div class="masthead-meta">
+      <span>April 15, 2025</span>
+      <span>·</span>
+      <span>For Anyone Who Was — Or Wasn't — There</span>
+      <span>·</span>
+      <span>Issue No. 001</span>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-number" aria-hidden="true">I</div>
+    <div class="hero-content">
+      <div class="hero-kicker">Today We Learned About</div>
+      <h1 class="hero-headline">The<br><em>Resilient</em><br>Jesus</h1>
+      <p class="hero-subhead">
+        Jesus is not just an example in suffering. He is an example in resilience. Those are not the same thing.
+      </p>
+    </div>
+    <div class="hero-bottom">
+      <span class="hero-verse">John 16:33 · Hebrews 4:15 · Luke 9:51</span>
+      <span class="hero-scroll">Scroll to read ↓</span>
+    </div>
+  </section>
+
+  <!-- THE PROBLEM -->
+  <section class="spread s-problem">
+    <div class="spread-num" aria-hidden="true">II</div>
+    <div class="section-label" style="color:#b5451b;">The Problem</div>
+    <h2 class="section-headline">We Expected<br>Bulletproof.</h2>
+    <div class="body-text" style="margin-top:2.5rem;position:relative;z-index:2;">
+      <p class="drop-cap">One of the hardest problems we face as Christians is evil and pain. Not because we do not
+        believe in God, but because we believed in him and still expected the world to behave. I remember when I was
+        small. Whenever they called us to pray, we would say, "God, please do not let any bad thing happen to my family
+        and friends." That was the full theology. A protective fence you installed at conversion and lived safely
+        behind.</p>
+      <p style="margin-top:1.5rem;">But there are things that will happen that are completely outside your control. Here
+        is what Scripture actually says: as long as you are on this earth with assurance of salvation, you will also
+        have assurance of trying times. The two arrive together. That is not a bug in the system. It is the honest fine
+        print.</p>
+    </div>
+    <div class="prayer-box">
+      "Many people believe that the moment they find faith, they should be bulletproof, perpetually happy and
+      unbothered. So when pain shows up, it does not just hurt. It confuses."
+      <cite>— The expectation nobody told us to adjust</cite>
+    </div>
+  </section>
+
+  <!-- THE ASSURANCE -->
+  <section class="spread s-assurance">
+    <div class="spread-num" aria-hidden="true">III</div>
+    <div class="section-label" style="color:rgba(245,240,232,0.55);">The Assurance</div>
+    <h2 class="section-headline" style="position:relative;z-index:2;">One thing<br>is sure.</h2>
+    <p class="body-text" style="position:relative;z-index:2;margin-top:1.5rem;color:rgba(245,240,232,0.8);">
+      You will suffer afflictions. Scripture does not soften this. Three different writers across different eras say the
+      same thing without apology.
+    </p>
+    <div class="verse-triptych">
+      <div class="verse-card">
+        <div class="verse-ref-big">John 3:16</div>
+        <div class="verse-text">God gave his only son. That tells you the scale of what this costs. It was never going
+          to be a comfortable arrangement on our end either.</div>
+        <div class="scripture-ref" style="color:rgba(245,240,232,0.4);">The Foundation</div>
+      </div>
+      <div class="verse-card mid">
+        <div class="verse-ref-big">John 16:33</div>
+        <div class="verse-text">"In this world you will have trouble." He said will. Not might. Not possibly. Jesus was
+          being honest with people he loved.</div>
+        <div class="scripture-ref" style="color:rgba(245,240,232,0.4);">The Warning</div>
+      </div>
+      <div class="verse-card">
+        <div class="verse-ref-big">2 Tim 3:12</div>
+        <div class="verse-text">Everyone who wants to live a godly life in Christ will face persecution. Paul wrote this
+          to prepare people, not to scare them away.</div>
+        <div class="scripture-ref" style="color:rgba(245,240,232,0.4);">The Pattern</div>
+      </div>
+    </div>
+    <div class="alert-stamp">"Satan desires to sift you as wheat." — Luke 22:31</div>
+  </section>
+
+  <!-- THE QUESTION -->
+  <section class="spread s-question">
+    <div class="spread-num" aria-hidden="true">IV</div>
+    <div class="section-label" style="color:rgba(245,240,232,0.4);">The Real Question</div>
+    <h2 class="section-headline">How prepared are you for<br><em>suffering?</em></h2>
+    <div class="verse-pull-center">
+      <p>"If you fail under pressure, your strength is too small." — Proverbs 24:10, MSG</p>
+      <div class="scripture-ref" style="color:rgba(245,240,232,0.4);margin-top:0.5rem;">Proverbs 24:10 MSG</div>
+    </div>
+    <div class="hebrews-callout">
+      <p>Jesus faced all the same testings we do. He is not an example from a comfortable distance. He came close enough
+        to know what pressure feels like from the inside. He is still the one at the right hand of God, interceding for
+        you.</p>
+      <cite>Hebrews 4:15 NLT</cite>
+    </div>
+  </section>
+
+  <!-- FOUNDATION -->
+  <section class="spread s-foundation">
+    <div class="spread-num" aria-hidden="true">V</div>
+    <div class="section-label" style="color:rgba(201,168,76,0.7);">What You're Built On</div>
+    <h2 class="section-headline" style="position:relative;z-index:2;">The Hidden<br>Part Is<br>Everything.</h2>
+    <div class="foundation-grid">
+      <div class="foundation-cell">
+        <h4>The Principle</h4>
+        <p>Every resilient structure you can see is built on a strong foundation. That is the hidden part nobody
+          photographs, nobody celebrates at the opening ceremony. When the storm comes, that underground part is the
+          only thing that actually matters.</p>
+      </div>
+      <div class="foundation-cell dark">
+        <h4>John 5:19</h4>
+        <p>"The Son can do nothing by himself; he can only do what he sees his Father doing." The public ministry of
+          Jesus ran on a private consistency. What people saw in him was built long before anyone was watching.</p>
+      </div>
+      <div class="foundation-cell dark">
+        <h4>The Danger</h4>
+        <p>A lot of Christians are trying to build a public faith on an inconsistent foundation. Sometimes it holds,
+          until pressure arrives. If you do not have depth, the culture will shape you. Your foundation is what governs
+          your decisions.</p>
+      </div>
+      <div class="foundation-cell">
+        <h4>The Conviction</h4>
+        <p>The question is not whether a storm is coming. The question is what is actually under you when it does.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DAILY TIME -->
+  <section class="spread s-daily">
+    <div class="spread-num" aria-hidden="true">VI</div>
+    <div class="section-label" style="color:#5ecb8a;">Pillar One</div>
+    <h2 class="section-headline" style="color:var(--cream);">Daily Non-<br>Negotiable<br>Time.</h2>
+    <div class="body-text">
+      <p>Structure your life around God instead of trying to fit God around your structures. That is the actual version
+        of what this requires. Your time with God has to be the fixed point. Everything else moves around it.</p>
+      <p style="margin-top:1.5rem;">Build your convictions from Scripture instead of from culture. If your theology is
+        mostly formed by what is trending, or by what the people around you seem to believe, it will not hold when the
+        culture shifts against you. A believer without depth will always crumble under pressure. The reason is simple:
+        they never built the part nobody sees.</p>
+    </div>
+    <div class="mandate-line">
+      "Structure your life around God instead of trying to fit God around your structures."
+    </div>
+  </section>
+
+  <!-- FLEXIBILITY -->
+  <section class="spread s-flexibility">
+    <div class="spread-num" aria-hidden="true">VII</div>
+    <div class="section-label" style="color:rgba(196,123,42,0.7);">Pillar Two</div>
+    <h2 class="section-headline" style="color:var(--cream);">Flexible in<br>Method.<br>Unmoved in<br>Message.</h2>
+    <div class="flex-rule">
+      <div class="flex-col">
+        <h4>What Flexibility Actually Means</h4>
+        <p>Jesus was uncompromising in truth and still knew how to read a room. Look at how he sat with the Samaritan
+          woman at the well. He understood the context, he knew what that conversation needed, and he moved accordingly
+          without changing what he was carrying. That is the model.</p>
+        <p>Flexibility is knowing how to respond in context without compromise. Part of that is learning to discern what
+          actually deserves your voice.</p>
+      </div>
+      <div class="flex-col">
+        <h4>Develop Emotional Discipline</h4>
+        <p>If you react to everything, you will lose focus. Not every provocation deserves your energy. Not every
+          argument needs your response. This is discipline, not passivity.</p>
+        <p>Develop emotional discipline. The person who cannot govern their own spirit cannot handle sustained pressure
+          either. Learn to respond instead of reacting. The distance between those two words is a whole sermon.</p>
+      </div>
+    </div>
+    <div class="prov-stamp">
+      "Whoever is slow to anger is better than the mighty, and he who rules his spirit than he who takes a city."
+      <cite>Proverbs 16:32 ESV</cite>
+    </div>
+  </section>
+
+  <!-- LOAD DISTRIBUTION -->
+  <section class="spread s-load">
+    <div class="spread-num" aria-hidden="true">VIII</div>
+    <div class="section-label" style="color:rgba(245,240,232,0.5);">Pillar Three</div>
+    <h2 class="section-headline">Don't Kill<br>Yourself<br>Doing It<br>Alone.</h2>
+    <div class="load-stats">
+      <div class="stat-block">
+        <div class="stat-big">Matt<br>26:38</div>
+        <div class="stat-label">Jesus said his soul was overwhelmed. Then he asked for company.</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-big">Ecc<br>4:9</div>
+        <div class="stat-label">Two are better than one. A design truth, not a preference.</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-big">Gal<br>6:2</div>
+        <div class="stat-label">Bear one another's burdens. Paul called this the law of Christ.</div>
+      </div>
+    </div>
+    <div class="body-text">
+      <p>Many believers do not break because of the pressure itself. They break because of isolation. I know this
+        personally. Isolation is my default, and I have had to learn the hard way that it is also a trap. If nobody can
+        correct you, pressure will break you.</p>
+      <p style="margin-top:1.2rem;">Build strong, godly relationships. Embrace accountability. Share burdens in a
+        community that is actually safe.</p>
+    </div>
+    <div class="community-refs">
+      <span class="ref-badge">Proverbs 27:17</span>
+      <span class="ref-badge">Build Godly Relationships</span>
+      <span class="ref-badge">Embrace Accountability</span>
+      <span class="ref-badge">Share Burdens Safely</span>
+    </div>
+  </section>
+
+  <!-- PURPOSE -->
+  <section class="spread s-purpose">
+    <div class="spread-num" aria-hidden="true">IX</div>
+    <div class="section-label" style="color:rgba(245,240,232,0.4);">Pillar Four</div>
+    <h2 class="section-headline">Resilience is<br>alignment<br>in design.</h2>
+    <div class="purpose-trio">
+      <div class="purpose-item">
+        <div class="purpose-icon">i.</div>
+        <p>Purpose settles you before the pressure comes. Luke 9:51 says Jesus "resolutely set his face" toward
+          Jerusalem. He already knew what was waiting. The clarity of where he was going gave him permission to keep
+          walking into it.</p>
+      </div>
+      <div class="purpose-item">
+        <div class="purpose-icon">ii.</div>
+        <p>Purpose interprets pain correctly. Without it, suffering is just chaos with no frame. With it, suffering has
+          a context. The cost makes sense within the larger story.</p>
+      </div>
+      <div class="purpose-item">
+        <div class="purpose-icon">iii.</div>
+        <p>Purpose removes the option of quitting. Hebrews 12:2 says Jesus endured the cross because of the joy set
+          before him. That finish line changed what the cross meant while he was still on it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TERMINAL -->
+  <section class="spread s-terminal">
+    <div class="spread-num" aria-hidden="true">X</div>
+    <div class="section-label">$ how_to_be_resilient --practical</div>
+    <div class="terminal-header">5 Things<br>to Actually Do.</div>
+    <div class="terminal-body">
+      <div class="cmd-line">
+        <span class="cmd-num">01</span>
+        <span class="cmd-prompt">$</span>
+        <span class="cmd-text">
+          define_your_convictions
+          <span class="cmd-sub">Know what you believe and why. Pressure will ask. You need the answer ready before the
+            exam starts.</span>
+        </span>
+      </div>
+      <div class="cmd-line">
+        <span class="cmd-num">02</span>
+        <span class="cmd-prompt">$</span>
+        <span class="cmd-text">
+          expect_pressure --not-if-but-when
+          <span class="cmd-sub">Stop being surprised when hard seasons come. Preparing is not pessimism. It is what
+            wisdom looks like in practice.</span>
+        </span>
+      </div>
+      <div class="cmd-line">
+        <span class="cmd-num">03</span>
+        <span class="cmd-prompt">$</span>
+        <span class="cmd-text">
+          rehearse_your_why
+          <span class="cmd-sub">Remind yourself of your purpose regularly. Do this before things get hard, not just when
+            they do. That way it is already in your system.</span>
+        </span>
+      </div>
+      <div class="cmd-line">
+        <span class="cmd-num">04</span>
+        <span class="cmd-prompt">$</span>
+        <span class="cmd-text">
+          learn_to_say "nevertheless"
+          <span class="cmd-sub">I see what is happening. I am still moving. The storm gets a vote, not a veto.</span>
+        </span>
+      </div>
+      <div class="cmd-line">
+        <span class="cmd-num">05</span>
+        <span class="cmd-prompt">$</span>
+        <span class="cmd-text">
+          schedule_maintenance --ongoing
+          <span class="cmd-sub">Daily time, community, purpose. These are practices, not achievements you unlock once
+            and store away.</span>
+        </span>
+      </div>
+      <div class="cmd-line" style="opacity:0.4;">
+        <span class="cmd-num"></span>
+        <span class="cmd-prompt">_</span>
+        <span class="cmd-text"><span class="cursor">█</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSER -->
+  <section class="spread s-closer">
+    <div class="nevertheless-line">The Word That Carries a Whole Theology</div>
+    <h2 class="section-headline">Never&shy;theless.</h2>
+    <div class="gold-rule"></div>
+    <div class="closing-body">
+      <p>Nevertheless is not denial. It is not pretending the storm is not real. It is saying: the storm is real, I see
+        it, and it is still not getting the last word.</p>
+      <p style="margin-top:1.5rem;">Jesus walked toward Jerusalem with his face set — not because the road was
+        comfortable, but because he knew where he was going. That is what resilience looks like. Not the absence of
+        pain. A purpose settled enough that pain does not get to rewrite the story.</p>
+    </div>
+    <div class="colophon">
+      The Resilient Jesus · MDWK · April 2025 · For anyone who was — or wasn't — there.
+    </div>
+  </section>
+
+</body>
+
+</html>
