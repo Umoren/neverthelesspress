@@ -1,0 +1,80 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TheFriendJesusIssue from '../components/issues/TheFriendJesusIssue.astro';
+import TheResilientJesusIssue from '../components/issues/TheResilientJesusIssue.astro';
+
+export async function getStaticPaths() {
+  const issues = await getCollection('issues');
+
+  return issues.map((issue) => ({
+    params: { slug: issue.slug },
+    props: { issue },
+  }));
+}
+
+const { issue } = Astro.props;
+const { Content } = await render(issue);
+
+const templates = {
+  'the-friend-jesus': TheFriendJesusIssue,
+  'the-resilient-jesus': TheResilientJesusIssue,
+} as const;
+
+const IssueTemplate = templates[issue.data.template as keyof typeof templates];
+---
+
+<BaseLayout
+  title={issue.data.seoTitle ?? `${issue.data.title} — Nevertheless`}
+  description={issue.data.description}
+  socialTitle={issue.data.socialTitle ?? issue.data.seoTitle ?? `${issue.data.title} — Nevertheless`}
+  socialDescription={issue.data.socialDescription ?? issue.data.description}
+  path={`/${issue.slug}`}
+  ogType="article"
+>
+  {IssueTemplate ? (
+    <IssueTemplate issue={issue} />
+  ) : (
+    <article class="fallback-issue">
+      <p class="fallback-label">Issue No. {String(issue.data.issueNumber).padStart(3, '0')}</p>
+      <h1>{issue.data.title}</h1>
+      <p class="fallback-description">{issue.data.description}</p>
+      <div class="fallback-content">
+        <Content />
+      </div>
+    </article>
+  )}
+</BaseLayout>
+
+<style>
+  .fallback-issue {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 5rem 2rem 6rem;
+  }
+
+  .fallback-label {
+    margin: 0 0 1rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  h1 {
+    margin: 0;
+    font-family: 'Fraunces', serif;
+    font-size: clamp(3rem, 9vw, 7rem);
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+  }
+
+  .fallback-description,
+  .fallback-content {
+    margin-top: 1.75rem;
+    color: var(--cream-mid);
+    font-size: 1.15rem;
+    line-height: 1.8;
+  }
+</style>

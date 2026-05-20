@@ -1,0 +1,600 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE_DESCRIPTION } from '../consts';
+
+const issues = (await getCollection('issues')).sort(
+  (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime(),
+);
+
+const featuredIssue = issues[0];
+const archiveIssues = issues.slice(0, 4);
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  }).format(date);
+
+const issueRoman = (issueNumber: number) =>
+  ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'][issueNumber - 1] ?? String(issueNumber);
+---
+
+<BaseLayout title="Nevertheless - A Gospel Publication" description={SITE_DESCRIPTION} path="/" showNav={false} showFooter={false}>
+  <div class="toc-page">
+    <header class="toc-nav">
+      <a class="toc-mark" href="/">Nevertheless</a>
+      <nav class="toc-links" aria-label="Primary">
+        <a href="/archive">Archive</a>
+        <a href="/about">About</a>
+        <a href={`/${featuredIssue.slug}`}>Latest Issue</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="toc-hero">
+        <p class="eyebrow">A Gospel Publication / Est. 2026 / Samuel Umoren</p>
+        <h1>Nevertheless</h1>
+        <div class="hero-rule"></div>
+        <div class="hero-copy">
+          <p>Notes from Scripture, sermons, and the ordinary parts of walking with God.</p>
+          <p>Built issue by issue. Plain writing. Strong pages. Gospel at the center.</p>
+        </div>
+      </section>
+
+      <section class="toc-board" data-reveal>
+        <article class="current-issue">
+          <div class="issue-kicker">
+            <span>Current Issue</span>
+            <span>No. {String(featuredIssue.data.issueNumber).padStart(3, '0')}</span>
+          </div>
+          <h2>{featuredIssue.data.title}</h2>
+          <p>{featuredIssue.data.socialDescription ?? featuredIssue.data.description}</p>
+          <a href={`/${featuredIssue.slug}`}>Read the Issue</a>
+        </article>
+
+        <aside class="issue-notes" aria-label="Current issue notes">
+          <div class="issue-notes-top">
+            <span>{formatDate(featuredIssue.data.publishDate)}</span>
+            <span>{featuredIssue.data.readTime}</span>
+          </div>
+          <blockquote>
+            "{featuredIssue.data.featuredQuote}"
+          </blockquote>
+          <div class="verse-line">{featuredIssue.data.featuredVerse}</div>
+          <div class="theme-list">
+            {featuredIssue.data.themes.slice(0, 6).map((theme) => <span>{theme}</span>)}
+          </div>
+          <div class="issue-roman" aria-hidden="true">{issueRoman(featuredIssue.data.issueNumber)}</div>
+        </aside>
+      </section>
+
+      <section class="contents-section" data-reveal>
+        <div class="section-heading">
+          <p class="eyebrow">Table Of Contents</p>
+          <h2>Recent issues</h2>
+        </div>
+
+        <div class="issue-list">
+          {archiveIssues.map((issue) => (
+            <a class="issue-row" href={`/${issue.slug}`}>
+              <span class="row-number">No. {String(issue.data.issueNumber).padStart(3, '0')}</span>
+              <span class="row-title">{issue.data.title}</span>
+              <span class="row-desc">{issue.data.description}</span>
+              <span class="row-date">{formatDate(issue.data.publishDate)}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section class="publishing-note" data-reveal>
+        <p class="eyebrow">The Rhythm</p>
+        <p>
+          The plan is simple: keep publishing. Some issues will be large magazine pieces. Some will be shorter letters.
+          The work is to keep the gospel clear and make the page worth staying with.
+        </p>
+      </section>
+    </main>
+
+    <footer class="toc-footer">
+      <span>Nevertheless Press</span>
+      <span>A Samuel Umoren Publication</span>
+    </footer>
+  </div>
+
+  <script is:inline>
+    const revealItems = document.querySelectorAll('[data-reveal]');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      revealItems.forEach((item) => item.classList.add('is-visible'));
+    } else {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { rootMargin: '0px 0px -14% 0px', threshold: 0.16 },
+      );
+
+      revealItems.forEach((item) => observer.observe(item));
+    }
+  </script>
+</BaseLayout>
+
+<style>
+  .toc-page {
+    min-height: 100vh;
+    background:
+      linear-gradient(90deg, rgba(15, 14, 12, 0.98), rgba(15, 14, 12, 0.92)),
+      radial-gradient(circle at 78% 20%, rgba(201, 168, 76, 0.08), transparent 34%);
+    color: var(--cream);
+    overflow: hidden;
+  }
+
+  .toc-page::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.032'/%3E%3C/svg%3E");
+    opacity: 0.75;
+  }
+
+  .toc-nav,
+  .toc-links,
+  .eyebrow,
+  .issue-kicker,
+  .issue-notes-top,
+  .verse-line,
+  .theme-list,
+  .row-number,
+  .row-date,
+  .toc-footer,
+  .current-issue a {
+    font-family: 'Space Mono', monospace;
+    text-transform: uppercase;
+  }
+
+  .toc-nav {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.3rem clamp(1.25rem, 4vw, 4rem);
+    border-bottom: 1px solid rgba(201, 168, 76, 0.18);
+  }
+
+  .toc-mark {
+    font-family: 'Fraunces', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    font-weight: 800;
+    color: var(--cream);
+    text-decoration: none;
+  }
+
+  .toc-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 1rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+  }
+
+  .toc-links a {
+    color: rgba(245, 240, 232, 0.62);
+    text-decoration: none;
+  }
+
+  .toc-links a:hover {
+    color: var(--gold);
+  }
+
+  main {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 1560px);
+    margin: 0 auto;
+    padding: clamp(3rem, 6vw, 6rem) clamp(1.25rem, 4vw, 4rem) 3rem;
+  }
+
+  .toc-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.2rem;
+    padding-bottom: clamp(3rem, 6vw, 5rem);
+  }
+
+  .eyebrow {
+    margin: 0;
+    color: var(--gold);
+    font-size: 0.62rem;
+    letter-spacing: 0.32em;
+    line-height: 1.6;
+  }
+
+  .toc-hero h1,
+  .current-issue h2,
+  .section-heading h2,
+  .issue-notes blockquote,
+  .issue-roman,
+  .row-title,
+  .publishing-note p:last-child {
+    font-family: 'Fraunces', serif;
+  }
+
+  .toc-hero h1 {
+    margin: 0;
+    max-width: 9ch;
+    font-size: clamp(5rem, 13vw, 15rem);
+    line-height: 0.82;
+    letter-spacing: -0.015em;
+  }
+
+  .hero-rule {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold), rgba(201, 168, 76, 0.1), transparent);
+  }
+
+  .hero-copy {
+    display: grid;
+    grid-template-columns: minmax(0, 34rem) minmax(0, 30rem);
+    gap: clamp(1.5rem, 5vw, 5rem);
+    color: var(--cream-mid);
+  }
+
+  .hero-copy p {
+    margin: 0;
+    font-size: clamp(1.1rem, 1.7vw, 1.35rem);
+    font-style: italic;
+    line-height: 1.66;
+  }
+
+  .toc-board {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(360px, 0.72fr);
+    gap: 1px;
+    background: rgba(201, 168, 76, 0.16);
+    min-height: clamp(540px, 50vw, 760px);
+  }
+
+  .current-issue,
+  .issue-notes {
+    background: rgba(8, 7, 6, 0.9);
+    padding: clamp(2rem, 5vw, 5rem);
+    min-width: 0;
+  }
+
+  .current-issue {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .current-issue::before {
+    content: '';
+    position: absolute;
+    right: clamp(2rem, 8vw, 8rem);
+    top: clamp(2rem, 5vw, 4.5rem);
+    width: clamp(8rem, 17vw, 18rem);
+    height: clamp(10rem, 18vw, 19rem);
+    background:
+      linear-gradient(180deg, rgba(247, 240, 226, 0.88), rgba(199, 157, 63, 0.08)),
+      var(--cream);
+    opacity: 0.1;
+    box-shadow: 0 0 60px rgba(201, 168, 76, 0.14);
+    pointer-events: none;
+  }
+
+  .current-issue::after {
+    content: '';
+    position: absolute;
+    right: clamp(2rem, 7vw, 7rem);
+    bottom: clamp(3rem, 6vw, 6rem);
+    width: clamp(13rem, 24vw, 24rem);
+    height: clamp(7rem, 12vw, 12rem);
+    border-bottom: 2px solid rgba(201, 168, 76, 0.18);
+    border-left: 2px solid rgba(201, 168, 76, 0.13);
+    border-right: 2px solid rgba(201, 168, 76, 0.13);
+    opacity: 0.75;
+    pointer-events: none;
+  }
+
+  .current-issue > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .issue-kicker,
+  .issue-notes-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    color: var(--gold);
+    font-size: 0.58rem;
+    letter-spacing: 0.22em;
+    line-height: 1.5;
+  }
+
+  .current-issue h2 {
+    margin: 0;
+    max-width: 9ch;
+    font-size: clamp(4.5rem, 9.2vw, 10rem);
+    line-height: 0.86;
+    letter-spacing: -0.018em;
+  }
+
+  .current-issue p {
+    margin: 0;
+    max-width: 44ch;
+    color: var(--cream-mid);
+    font-size: clamp(1.08rem, 1.5vw, 1.28rem);
+    font-style: italic;
+    line-height: 1.72;
+  }
+
+  .current-issue a {
+    width: fit-content;
+    color: var(--ink);
+    background: var(--gold);
+    text-decoration: none;
+    padding: 0.85rem 1.4rem;
+    font-size: 0.66rem;
+    letter-spacing: 0.22em;
+  }
+
+  .current-issue a:hover {
+    background: var(--cream);
+  }
+
+  .issue-notes {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+    overflow: hidden;
+  }
+
+  .issue-notes blockquote {
+    margin: 0;
+    max-width: 15ch;
+    color: rgba(245, 240, 232, 0.78);
+    font-size: clamp(2rem, 3.3vw, 4rem);
+    font-style: italic;
+    line-height: 1.08;
+  }
+
+  .verse-line {
+    color: var(--gold);
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+  }
+
+  .theme-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+
+  .theme-list span {
+    border: 1px solid rgba(245, 240, 232, 0.12);
+    color: var(--cream-low);
+    font-size: 0.55rem;
+    letter-spacing: 0.18em;
+    padding: 0.35rem 0.7rem;
+  }
+
+  .issue-roman {
+    position: absolute;
+    right: -2rem;
+    bottom: -3rem;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(201, 168, 76, 0.13);
+    font-size: clamp(13rem, 22vw, 24rem);
+    font-style: italic;
+    font-weight: 900;
+    line-height: 0.8;
+    pointer-events: none;
+  }
+
+  .contents-section {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.34fr) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    padding: clamp(4rem, 7vw, 7rem) 0;
+  }
+
+  .section-heading h2 {
+    margin: 0.8rem 0 0;
+    font-size: clamp(2.8rem, 5vw, 5rem);
+    line-height: 0.95;
+  }
+
+  .issue-list {
+    border-top: 1px solid rgba(245, 240, 232, 0.12);
+  }
+
+  .issue-row {
+    display: grid;
+    grid-template-columns: 7.5rem minmax(10rem, 0.6fr) minmax(16rem, 1fr) 10rem;
+    gap: 1.5rem;
+    align-items: baseline;
+    padding: 1.35rem 0;
+    border-bottom: 1px solid rgba(245, 240, 232, 0.12);
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .issue-row:hover .row-title {
+    color: var(--gold);
+  }
+
+  .row-number,
+  .row-date {
+    color: var(--cream-low);
+    font-size: 0.58rem;
+    letter-spacing: 0.16em;
+  }
+
+  .row-title {
+    font-size: clamp(1.45rem, 2.4vw, 2.5rem);
+    line-height: 1;
+    transition: color 0.2s ease;
+  }
+
+  .row-desc {
+    color: var(--cream-mid);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .publishing-note {
+    display: grid;
+    grid-template-columns: minmax(10rem, 0.26fr) minmax(0, 45rem);
+    gap: clamp(1.5rem, 5vw, 5rem);
+    padding: clamp(2.5rem, 5vw, 4rem) 0 clamp(3rem, 6vw, 5rem);
+    border-top: 1px solid rgba(201, 168, 76, 0.18);
+  }
+
+  .publishing-note p:last-child {
+    margin: 0;
+    color: rgba(245, 240, 232, 0.78);
+    font-size: clamp(1.6rem, 3vw, 3rem);
+    font-style: italic;
+    line-height: 1.2;
+  }
+
+  .toc-footer {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.4rem clamp(1.25rem, 4vw, 4rem);
+    border-top: 1px solid rgba(245, 240, 232, 0.08);
+    color: var(--cream-low);
+    font-size: 0.56rem;
+    letter-spacing: 0.18em;
+  }
+
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  [data-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0.001ms !important;
+    }
+
+    [data-reveal] {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .toc-board,
+    .contents-section,
+    .publishing-note {
+      grid-template-columns: 1fr;
+    }
+
+    .toc-board {
+      min-height: auto;
+    }
+
+    .issue-row {
+      grid-template-columns: 6rem minmax(0, 1fr);
+    }
+
+    .row-desc,
+    .row-date {
+      grid-column: 2;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .toc-nav,
+    .toc-footer {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .toc-links {
+      justify-content: flex-start;
+      line-height: 1.8;
+    }
+
+    main {
+      padding-top: 3rem;
+    }
+
+    .toc-hero h1 {
+      font-size: clamp(4rem, 18vw, 6rem);
+      line-height: 0.9;
+    }
+
+    .hero-copy {
+      grid-template-columns: 1fr;
+    }
+
+    .current-issue,
+    .issue-notes {
+      padding: 1.6rem 1.25rem;
+    }
+
+    .issue-kicker,
+    .issue-notes-top {
+      flex-direction: column;
+    }
+
+    .current-issue h2 {
+      font-size: clamp(3.5rem, 16vw, 5.2rem);
+    }
+
+    .current-issue::before,
+    .current-issue::after {
+      display: none;
+    }
+
+    .issue-notes blockquote {
+      max-width: 18ch;
+    }
+
+    .issue-row {
+      grid-template-columns: 1fr;
+      gap: 0.65rem;
+    }
+
+    .row-desc,
+    .row-date {
+      grid-column: auto;
+    }
+  }
+</style>

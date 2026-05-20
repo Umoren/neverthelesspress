@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About — Nevertheless" description="About Nevertheless Press, a gospel publication by Samuel Umoren." path="/about">
+  <main class="about-shell">
+    <section class="about-hero">
+      <p class="kicker">About</p>
+      <h1>I am trying to write what I am learning before I forget it.</h1>
+    </section>
+
+    <section class="about-body">
+      <p>
+        Some Sundays, a line follows me home.
+      </p>
+
+      <p>
+        Sometimes it is from Scripture. Sometimes it is from a sermon. Sometimes it meets something I am already
+        carrying, like pressure, loneliness, fear, joy, confusion, or a decision I have been avoiding.
+      </p>
+
+      <p>
+        If I do not write it down, it stays vague. When I write it, I can see it more clearly.
+      </p>
+
+      <p>
+        Nevertheless Press is where those notes become published work.
+      </p>
+
+      <p>
+        This is not a church blog. It is not a sermon dump. It is not me trying to sound deep. I want to say true things
+        plainly, keep the gospel close, and make pages that are worth staying with.
+      </p>
+
+      <p>
+        Some issues will come from sermons by Pastor Emmanuel Olaniran. Some will come from my own reflections. The
+        source can change. The standard cannot.
+      </p>
+
+      <p>
+        I care about the design because words need a room. A page can either flatten the message or help the reader sit
+        with it. I want each issue to feel like it has been handled with care.
+      </p>
+
+      <p>
+        So that is the work for now: one issue at a time. Clear writing. Strong art direction. No waiting for perfect.
+      </p>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .about-shell {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: clamp(4rem, 8vw, 7rem) 2rem 6rem;
+  }
+
+  .about-hero {
+    max-width: 58rem;
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+  }
+
+  .kicker {
+    margin: 0 0 1.25rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  h1 {
+    margin: 0;
+    font-family: 'Fraunces', serif;
+    font-size: clamp(3.1rem, 8.2vw, 8.5rem);
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+  }
+
+  .about-body {
+    display: grid;
+    gap: 1.45rem;
+    max-width: 48rem;
+    margin-left: min(10vw, 8rem);
+    padding-left: clamp(1.25rem, 3vw, 2.5rem);
+    border-left: 1px solid rgba(201, 168, 76, 0.24);
+  }
+
+  .about-body p {
+    margin: 0;
+    font-size: clamp(1.12rem, 1.8vw, 1.32rem);
+    line-height: 1.78;
+    color: var(--cream-mid);
+  }
+
+  .about-body p:first-child {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.8rem, 3.4vw, 3rem);
+    line-height: 1.12;
+    color: var(--cream);
+  }
+
+  @media (max-width: 720px) {
+    .about-shell {
+      padding-inline: 1.25rem;
+    }
+
+    .about-body {
+      margin-left: 0;
+      padding-left: 1.25rem;
+    }
+  }
+</style>

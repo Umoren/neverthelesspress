@@ -1,0 +1,100 @@
+---
+import { getCollection } from 'astro:content';
+
+const issues = (await getCollection('issues')).sort(
+  (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime(),
+);
+
+const latestIssue = issues[0];
+const latestHref = latestIssue ? `/${latestIssue.slug}` : '/archive';
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/archive', label: 'Archive' },
+  { href: '/about', label: 'About' },
+  { href: latestHref, label: 'Latest Issue' },
+];
+---
+
+<nav class="site-nav" aria-label="Primary">
+  <a class="site-mark" href="/">Nevertheless</a>
+  <div class="site-links">
+    {links.map((link) => {
+      const normalizedHref = link.href.replace(/\/$/, '') || '/';
+      const isCurrent = pathname === normalizedHref;
+
+      return (
+        <a href={link.href} class:list={{ 'site-link': true, current: isCurrent }} aria-current={isCurrent ? 'page' : undefined}>
+          {link.label}
+        </a>
+      );
+    })}
+  </div>
+</nav>
+
+<style>
+  .site-nav {
+    position: relative;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.25rem 2rem;
+    border-bottom: 1px solid rgba(245, 240, 232, 0.08);
+    background: rgba(15, 14, 12, 0.78);
+    backdrop-filter: blur(14px);
+  }
+
+  .site-mark,
+  .site-link {
+    text-decoration: none;
+  }
+
+  .site-mark {
+    font-family: 'Fraunces', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--cream);
+  }
+
+  .site-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.85rem;
+  }
+
+  .site-link {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(245, 240, 232, 0.64);
+    border: 1px solid rgba(245, 240, 232, 0.12);
+    padding: 0.55rem 0.85rem;
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .site-link:hover,
+  .site-link.current {
+    color: var(--cream);
+    border-color: rgba(201, 168, 76, 0.32);
+    background: rgba(201, 168, 76, 0.08);
+  }
+
+  @media (max-width: 640px) {
+    .site-nav {
+      padding: 1rem 1.1rem;
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .site-links {
+      justify-content: flex-start;
+    }
+  }
+</style>

@@ -1,0 +1,1183 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  issue: CollectionEntry<'issues'>;
+}
+
+const { issue } = Astro.props;
+
+const issueNumber = String(issue.data.issueNumber).padStart(3, '0');
+const publishDate = new Intl.DateTimeFormat('en-US', {
+  month: 'long',
+  day: 'numeric',
+  year: 'numeric',
+}).format(issue.data.publishDate);
+---
+
+<article class="friend-issue">
+  <header class="issue-masthead">
+    <a class="press-mark" href="/">Nevertheless</a>
+    <div class="masthead-line"></div>
+    <div class="issue-meta">
+      <span>{issue.data.label}</span>
+      <span>{publishDate}</span>
+      <span>Issue No. {issueNumber}</span>
+    </div>
+  </header>
+
+  <section class="spread hero-spread" aria-labelledby="friend-title">
+    <div class="hero-copy">
+      <p class="section-label">A Study In Nearness</p>
+      <h1 id="friend-title">The Friend<br /><em>Jesus</em></h1>
+      <p class="hero-lede">{issue.data.description}</p>
+      <div class="hero-quote">
+        <span>John 15:15</span>
+        <p>When you received the gospel, you received a Lord, a Savior, and a great friend.</p>
+      </div>
+    </div>
+
+    <figure class="room-scene" aria-label="Two empty chairs beside a table with an open Bible">
+      <div class="window-light"></div>
+      <div class="room-wall"></div>
+      <div class="chair chair-left"></div>
+      <div class="chair chair-right"></div>
+      <div class="table-top">
+        <div class="open-bible">
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <figcaption>Attention is not the same thing as friendship.</figcaption>
+    </figure>
+  </section>
+
+  <section class="spread ache-spread">
+    <div class="spread-number">01</div>
+    <div class="copy-column">
+      <p class="section-label">The Ache</p>
+      <h2>You can have attention and still not have friendship.</h2>
+      <div class="body-copy">
+        <p>
+          You can be in every group chat and still feel unknown. You can laugh with people all day and still go home
+          feeling like nobody really knows you. A lot of us struggle to name that honestly. We call it tiredness, or
+          stress, or one of those seasons.
+        </p>
+        <p>But sometimes the problem is simpler than that. Sometimes you are lonely.</p>
+        <p>
+          Loneliness changes how you think and what you settle for. Noise can start to feel like love. Proximity can
+          start to feel like closeness. Being around people can start to feel like being known.
+        </p>
+      </div>
+    </div>
+    <aside class="margin-note">
+      <span>Reader's Margin</span>
+      <p>Noise can imitate nearness for a while. It cannot replace being known.</p>
+    </aside>
+  </section>
+
+  <section class="spread personal-spread">
+    <div class="spread-number">02</div>
+    <div class="personal-rule"></div>
+    <div class="personal-copy">
+      <p class="section-label">Not From A Distance</p>
+      <p>
+        I am not saying that from a distance. I have lived with loneliness for a long time, and even as I write this, I
+        still feel it sometimes. I am fresh out of a dating relationship. I was laid off from my job. There are other
+        things in my life right now that I would not have chosen.
+      </p>
+      <p>So this is not just an idea to me. I am writing from pain, but also from discovery.</p>
+    </div>
+    <div class="discovery-line">This is why the words of Jesus matter.</div>
+  </section>
+
+  <section class="spread thesis-spread">
+    <p class="section-label">The Claim</p>
+    <h2>Jesus calls his people friends.</h2>
+    <div class="thesis-grid">
+      <p>
+        Many believers know him as Lord, Savior, and King. All of that is true. Many still struggle to live with another
+        truth.
+      </p>
+      <p>
+        That line can sound soft if we rush it. It can turn into church language with no weight in real life. So we need
+        to say the point carefully.
+      </p>
+    </div>
+    <p class="large-line">When you received the gospel, you received a Lord, a Savior, and a great friend.</p>
+  </section>
+
+  <section class="spread garden-spread">
+    <div class="spread-number">03</div>
+    <div class="garden-texture" aria-hidden="true"></div>
+    <div class="copy-column">
+      <p class="section-label">The Beginning</p>
+      <h2>God began with nearness.</h2>
+      <div class="body-copy">
+        <p>Sometimes we talk as if God started far away and later decided to come close. The Bible tells us something different.</p>
+        <p>Nearness was there from the beginning.</p>
+        <p>
+          Genesis 2 shows us a God who made man with care and placed him in a garden with purpose. This was life with
+          God. It was fellowship, instruction, presence, and trust.
+        </p>
+        <p>
+          Then sin entered the world, and shame followed it quickly. When Adam and Eve hid, it showed that sin produces
+          guilt and distance.
+        </p>
+      </div>
+    </div>
+    <blockquote class="scripture-block">
+      <span>Genesis 3:8-9</span>
+      <p>
+        "And they heard the sound of the Lord God walking in the garden in the cool of the day, and the man and his wife
+        hid themselves from the presence of the Lord God among the trees of the garden. But the Lord God called to the
+        man and said to him, 'Where are you?'"
+      </p>
+    </blockquote>
+    <p class="after-fall">After the fall, God called first.</p>
+  </section>
+
+  <section class="spread history-spread">
+    <div class="spread-number">04</div>
+    <p class="section-label">Across Scripture</p>
+    <h2>God kept moving toward people.</h2>
+    <div class="history-rail">
+      <div>
+        <span>Hebrews 1:1-2</span>
+        <p>God spoke in many times and many ways, and in these last days he has spoken to us by his Son.</p>
+      </div>
+      <div>
+        <span>Exodus 33:11</span>
+        <p>"Thus the Lord used to speak to Moses face to face, as a man speaks to his friend."</p>
+      </div>
+      <div>
+        <span>James 2:23</span>
+        <p>"Abraham believed God, and it was counted to him as righteousness" and he was called a friend of God.</p>
+      </div>
+      <div>
+        <span>Jeremiah 9:24</span>
+        <p>"But let him who boasts boast in this, that he understands and knows me."</p>
+      </div>
+    </div>
+    <p class="history-close">
+      God was inviting people into more than obedience. He was inviting them to know him. Friendship with God has a
+      history. It has roots. We see it across Scripture.
+    </p>
+  </section>
+
+  <section class="spread john-spread">
+    <div class="spread-number">05</div>
+    <div class="john-header">
+      <p class="section-label">The Center</p>
+      <h2>Jesus says it plainly.</h2>
+    </div>
+    <div class="john-copy">
+      <p>Then the life of Jesus makes it plain.</p>
+      <p>
+        John 1:14 says, "And the Word became flesh and dwelt among us, and we have seen his glory, glory as of the only
+        Son from the Father, full of grace and truth."
+      </p>
+      <p>God came near in a person.</p>
+    </div>
+    <blockquote class="john-verse">
+      <span>John 15:12-15</span>
+      <p>
+        "This is my commandment, that you love one another as I have loved you. Greater love has no one than this, that
+        someone lay down his life for his friends. You are my friends if you do what I command you. No longer do I call
+        you servants, for the servant does not know what his master is doing but I have called you friends, for all that
+        I have heard from my Father I have made known to you."
+      </p>
+    </blockquote>
+    <p class="john-bottom">Jesus chose that word with care. He calls them friends.</p>
+  </section>
+
+  <section class="spread lord-spread">
+    <div class="spread-number">06</div>
+    <div class="copy-column">
+      <p class="section-label">The Reverence</p>
+      <h2>Friend, but still Lord.</h2>
+      <div class="body-copy">
+        <p>Jesus is still Lord.</p>
+        <p>
+          This is where people can go wrong. If you hear that Jesus calls you friend, you can start shrinking him in your
+          mind. You start treating him casually. You lose reverence.
+        </p>
+        <p>Friendship with Jesus is intimate and reverent.</p>
+        <p>
+          He draws near without becoming less than he is. He speaks openly, but he still commands. He loves warmly, but
+          he is still the Son of God. His friendship is real, and he remains above us.
+        </p>
+      </div>
+    </div>
+    <p class="reverence-stamp">He draws near without becoming small.</p>
+  </section>
+
+  <section class="spread cross-spread">
+    <div class="spread-number">07</div>
+    <p class="section-label">The Proof</p>
+    <h2>The cross proves what kind of friend he is.</h2>
+    <div class="cross-layout">
+      <blockquote>
+        <span>John 15:13</span>
+        <p>"Greater love has no one than this, that someone lay down his life for his friends."</p>
+      </blockquote>
+      <div class="cross-mark" aria-hidden="true"></div>
+      <div class="cross-copy">
+        <p>Friendship becomes sentimental when we leave it undefined.</p>
+        <p>Jesus tied friendship to sacrifice.</p>
+        <p>This is what makes Jesus the greatest friend. His friendship led him to the cross.</p>
+        <p>
+          Jesus' friendship rises above every human example. Ordinary loyalty falls short beside a friend who gives his
+          life for you.
+        </p>
+      </div>
+    </div>
+    <p class="calvary-line">The cross is the proof. If you want to know what kind of friend Jesus is, start at Calvary.</p>
+  </section>
+
+  <section class="spread practice-spread">
+    <div class="spread-number">08</div>
+    <p class="section-label">The Shape Of Love</p>
+    <h2>His friendship should shape how believers love people.</h2>
+    <div class="practice-grid">
+      <p>If Jesus befriends people this way, then Christians should stop treating people like projects, props, or categories.</p>
+      <p>That means genuine care. It means noticing people, making room for them, and treating them with steady kindness.</p>
+      <p>So love people well. Do good without demanding a return. Care for people without turning them into opportunities.</p>
+      <p>It means loving people enough to tell the truth without joining them in sin.</p>
+    </div>
+    <div class="practice-verses">
+      <blockquote>
+        <span>John 13:35</span>
+        <p>"By this all people will know that you are my disciples, if you have love for one another."</p>
+      </blockquote>
+      <blockquote>
+        <span>Romans 12:15</span>
+        <p>"Rejoice with those who rejoice, weep with those who weep."</p>
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="spread faith-spread">
+    <div class="spread-number">09</div>
+    <div class="copy-column">
+      <p class="section-label">The Door</p>
+      <h2>Friendship with God comes by faith.</h2>
+      <div class="body-copy">
+        <p>How does a person become a friend of God?</p>
+        <p>
+          A person becomes a friend of God by faith. Impressiveness, cleaning yourself up first, and spiritual performance
+          are the wrong place to look.
+        </p>
+        <p>
+          James 2:23 takes us back to Abraham: "Abraham believed God, and it was counted to him as righteousness" and he
+          was called a friend of God.
+        </p>
+        <p>Friendship with God is received by trusting him.</p>
+      </div>
+    </div>
+    <aside class="faith-note">
+      <span>Good News</span>
+      <p>Jesus bore sin and grief and sorrow so that sinners could be brought near.</p>
+    </aside>
+  </section>
+
+  <section class="spread close-spread">
+    <p class="section-label">The Nearness</p>
+    <h2>He brings his people near.</h2>
+    <div class="close-copy">
+      <p>Some people have attention and still need true friendship.</p>
+      <p>Some believers know Jesus is powerful. They struggle to believe he is near.</p>
+      <p>The gospel answer to loneliness is this: the Son of God came near, spoke plainly, laid down his life, and now calls his people friends.</p>
+    </div>
+    <p class="final-line">He brings his people near.</p>
+    <div class="colophon">The Friend Jesus · Nevertheless Press · {publishDate}</div>
+  </section>
+</article>
+
+<style>
+  :root {
+    --friend-cream: #f7f0e2;
+    --friend-paper: #efe2c9;
+    --friend-ink: #12110d;
+    --friend-green: #143d33;
+    --friend-green-deep: #0d2923;
+    --friend-gold: #c79d3f;
+    --friend-clay: #9c4f2f;
+    --friend-olive: #61713d;
+    --friend-shadow: rgba(18, 17, 13, 0.18);
+  }
+
+  .friend-issue {
+    background: var(--friend-cream);
+    color: var(--friend-ink);
+    overflow: hidden;
+  }
+
+  .issue-masthead {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.2rem clamp(1.25rem, 4vw, 3rem);
+    background: var(--friend-ink);
+    color: var(--friend-cream);
+    border-bottom: 1px solid rgba(199, 157, 63, 0.28);
+  }
+
+  .press-mark {
+    color: inherit;
+    text-decoration: none;
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    font-weight: 700;
+  }
+
+  .masthead-line {
+    height: 1px;
+    background: linear-gradient(90deg, rgba(199, 157, 63, 0.8), transparent);
+  }
+
+  .issue-meta,
+  .section-label,
+  .hero-quote span,
+  .room-scene figcaption,
+  .margin-note span,
+  .scripture-block span,
+  .history-rail span,
+  .john-verse span,
+  .cross-layout span,
+  .practice-verses span,
+  .faith-note span,
+  .colophon {
+    font-family: 'Space Mono', monospace;
+    text-transform: uppercase;
+  }
+
+  .issue-meta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    color: rgba(247, 240, 226, 0.58);
+  }
+
+  .spread {
+    min-height: 100vh;
+    position: relative;
+    padding: clamp(4rem, 8vw, 8rem) clamp(1.5rem, 7vw, 7rem);
+  }
+
+  .section-label {
+    margin: 0 0 1.2rem;
+    color: var(--friend-clay);
+    font-size: 0.64rem;
+    letter-spacing: 0.32em;
+  }
+
+  h1,
+  h2,
+  .large-line,
+  .discovery-line,
+  .after-fall,
+  .john-bottom,
+  .reverence-stamp,
+  .calvary-line,
+  .final-line,
+  .spread-number {
+    font-family: 'Fraunces', serif;
+  }
+
+  h1,
+  h2,
+  p,
+  blockquote {
+    margin: 0;
+  }
+
+  h1 {
+    font-size: clamp(4.8rem, 14vw, 13rem);
+    line-height: 0.82;
+    letter-spacing: -0.02em;
+    max-width: 7ch;
+  }
+
+  h1 em {
+    color: var(--friend-gold);
+    font-style: italic;
+  }
+
+  h2 {
+    font-size: clamp(3rem, 8.5vw, 8rem);
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    max-width: 11ch;
+  }
+
+  .body-copy {
+    margin-top: 2rem;
+    max-width: 62ch;
+    font-size: clamp(1.08rem, 1.8vw, 1.32rem);
+    line-height: 1.76;
+    color: rgba(18, 17, 13, 0.78);
+  }
+
+  .body-copy p + p {
+    margin-top: 1.2rem;
+  }
+
+  .spread-number {
+    position: absolute;
+    right: clamp(1rem, 5vw, 5rem);
+    top: clamp(1.5rem, 5vw, 5rem);
+    font-size: clamp(6rem, 18vw, 18rem);
+    line-height: 0.8;
+    font-weight: 900;
+    color: rgba(18, 17, 13, 0.05);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .hero-spread {
+    display: grid;
+    grid-template-columns: minmax(0, 0.82fr) minmax(360px, 0.9fr);
+    gap: clamp(2rem, 6vw, 6rem);
+    align-items: center;
+    background:
+      linear-gradient(90deg, rgba(247, 240, 226, 0.96), rgba(239, 226, 201, 0.78)),
+      radial-gradient(circle at 70% 20%, rgba(199, 157, 63, 0.22), transparent 38%);
+  }
+
+  .hero-lede {
+    max-width: 35ch;
+    margin-top: 2rem;
+    font-size: clamp(1.15rem, 2vw, 1.5rem);
+    line-height: 1.62;
+    color: rgba(18, 17, 13, 0.66);
+  }
+
+  .hero-quote {
+    margin-top: 3rem;
+    max-width: 42ch;
+    border-left: 3px solid var(--friend-gold);
+    padding-left: 1.4rem;
+  }
+
+  .hero-quote span {
+    display: block;
+    margin-bottom: 0.7rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    color: var(--friend-clay);
+  }
+
+  .hero-quote p {
+    font-size: clamp(1.35rem, 2.5vw, 2rem);
+    line-height: 1.28;
+    font-style: italic;
+  }
+
+  .room-scene {
+    min-height: clamp(560px, 72vh, 820px);
+    margin: 0;
+    position: relative;
+    isolation: isolate;
+    background:
+      linear-gradient(180deg, rgba(255, 250, 238, 0.72), rgba(199, 157, 63, 0.12)),
+      var(--friend-paper);
+    box-shadow: 0 30px 90px rgba(18, 17, 13, 0.2);
+    overflow: hidden;
+  }
+
+  .room-scene::before {
+    content: '';
+    position: absolute;
+    left: 9%;
+    right: 9%;
+    bottom: 18%;
+    height: 1px;
+    background: rgba(82, 50, 36, 0.22);
+  }
+
+  .room-scene::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(18, 17, 13, 0.04) 1px, transparent 1px);
+    background-size: 100% 4.6rem;
+    opacity: 0.28;
+    z-index: -1;
+  }
+
+  .window-light {
+    position: absolute;
+    inset: 0 0 auto auto;
+    width: 68%;
+    height: 72%;
+    background: linear-gradient(108deg, rgba(255, 252, 232, 0.94), rgba(245, 221, 157, 0.16) 64%, transparent);
+    clip-path: polygon(22% 0, 100% 0, 100% 100%, 0 100%);
+    filter: blur(0.2px);
+  }
+
+  .room-wall {
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    bottom: 30%;
+    height: 1px;
+    background: rgba(82, 50, 36, 0.18);
+  }
+
+  .table-top {
+    position: absolute;
+    left: 18%;
+    right: 18%;
+    bottom: 29%;
+    height: 1rem;
+    background: #5a3827;
+    box-shadow: 0 1.8rem 0 -0.45rem rgba(74, 44, 32, 0.72);
+    z-index: 4;
+  }
+
+  .table-top::before,
+  .table-top::after {
+    content: '';
+    position: absolute;
+    top: 0.9rem;
+    width: 0.5rem;
+    height: 8.5rem;
+    background: #4a2c20;
+  }
+
+  .table-top::before {
+    left: 16%;
+  }
+
+  .table-top::after {
+    right: 16%;
+  }
+
+  .open-bible {
+    position: absolute;
+    left: 50%;
+    bottom: 0.75rem;
+    transform: translateX(-50%) perspective(260px) rotateX(20deg);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.25rem;
+    width: min(50%, 17.5rem);
+    height: 5.8rem;
+    filter: drop-shadow(0 0.8rem 0.9rem rgba(18, 17, 13, 0.12));
+  }
+
+  .open-bible span {
+    background:
+      repeating-linear-gradient(180deg, transparent 0 0.58rem, rgba(82, 50, 36, 0.24) 0.62rem 0.68rem),
+      #f8efd8;
+    border: 1px solid rgba(18, 17, 13, 0.24);
+  }
+
+  .chair {
+    position: absolute;
+    bottom: 27.5%;
+    width: 22%;
+    height: 27%;
+    border: 0.72rem solid rgba(79, 48, 35, 0.95);
+    border-bottom: 0;
+    border-radius: 2px 2px 0 0;
+    opacity: 0.9;
+    z-index: 2;
+  }
+
+  .chair::before {
+    content: '';
+    position: absolute;
+    left: -0.72rem;
+    right: -0.72rem;
+    bottom: -1.35rem;
+    height: 0.72rem;
+    background: rgba(79, 48, 35, 0.95);
+  }
+
+  .chair-left {
+    left: 6%;
+  }
+
+  .chair-right {
+    right: 6%;
+    transform: scale(1.08);
+  }
+
+  .room-scene figcaption {
+    position: absolute;
+    left: 7%;
+    bottom: 7%;
+    max-width: 25ch;
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    line-height: 1.6;
+    color: rgba(18, 17, 13, 0.58);
+  }
+
+  .ache-spread {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 0.38fr);
+    gap: clamp(2rem, 7vw, 7rem);
+    align-items: center;
+    background: var(--friend-ink);
+    color: var(--friend-cream);
+  }
+
+  .ache-spread .body-copy {
+    color: rgba(247, 240, 226, 0.78);
+  }
+
+  .ache-spread .spread-number {
+    color: rgba(247, 240, 226, 0.06);
+  }
+
+  .margin-note,
+  .faith-note {
+    border-top: 1px solid rgba(199, 157, 63, 0.55);
+    border-bottom: 1px solid rgba(199, 157, 63, 0.24);
+    padding: 1.4rem 0;
+  }
+
+  .margin-note span,
+  .faith-note span {
+    display: block;
+    margin-bottom: 1rem;
+    color: var(--friend-gold);
+    font-size: 0.58rem;
+    letter-spacing: 0.22em;
+  }
+
+  .margin-note p,
+  .faith-note p {
+    font-size: clamp(1.25rem, 2.6vw, 2.1rem);
+    line-height: 1.35;
+    font-style: italic;
+  }
+
+  .personal-spread {
+    display: grid;
+    grid-template-columns: 0.18fr minmax(0, 0.86fr) minmax(260px, 0.55fr);
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: center;
+    background: var(--friend-green);
+    color: var(--friend-cream);
+  }
+
+  .personal-spread .spread-number,
+  .john-spread .spread-number,
+  .cross-spread .spread-number,
+  .lord-spread .spread-number {
+    color: rgba(247, 240, 226, 0.06);
+  }
+
+  .personal-rule {
+    width: 1px;
+    height: 70vh;
+    background: linear-gradient(180deg, transparent, var(--friend-gold), transparent);
+  }
+
+  .personal-copy {
+    max-width: 55ch;
+    font-size: clamp(1.25rem, 2.4vw, 1.8rem);
+    line-height: 1.62;
+    color: rgba(247, 240, 226, 0.82);
+  }
+
+  .personal-copy p + p {
+    margin-top: 1.4rem;
+  }
+
+  .discovery-line {
+    font-size: clamp(2.2rem, 5vw, 5.5rem);
+    line-height: 0.98;
+    color: var(--friend-gold);
+    font-style: italic;
+  }
+
+  .thesis-spread {
+    background: var(--friend-paper);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .thesis-spread h2 {
+    max-width: 12ch;
+  }
+
+  .thesis-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 34rem));
+    gap: clamp(2rem, 5vw, 5rem);
+    margin-top: 3rem;
+    font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+    line-height: 1.75;
+    color: rgba(18, 17, 13, 0.7);
+  }
+
+  .large-line {
+    margin-top: clamp(3rem, 7vw, 6rem);
+    max-width: 21ch;
+    font-size: clamp(2.4rem, 6vw, 6.5rem);
+    line-height: 0.98;
+    color: var(--friend-green);
+  }
+
+  .garden-spread {
+    display: grid;
+    grid-template-columns: minmax(0, 0.82fr) minmax(300px, 0.72fr);
+    gap: clamp(2.5rem, 6vw, 6rem);
+    align-items: center;
+    background: #eef1dc;
+  }
+
+  .garden-texture {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 18% 28%, rgba(97, 113, 61, 0.28), transparent 25%),
+      radial-gradient(circle at 86% 34%, rgba(20, 61, 51, 0.18), transparent 28%),
+      linear-gradient(135deg, transparent 0 48%, rgba(97, 113, 61, 0.13) 49% 51%, transparent 52%);
+    opacity: 0.65;
+  }
+
+  .garden-spread > *:not(.garden-texture) {
+    position: relative;
+    z-index: 1;
+  }
+
+  .scripture-block,
+  .john-verse,
+  .cross-layout blockquote,
+  .practice-verses blockquote {
+    border-left: 4px solid var(--friend-gold);
+    padding-left: clamp(1.2rem, 2.6vw, 2rem);
+  }
+
+  .scripture-block span,
+  .john-verse span,
+  .cross-layout span,
+  .practice-verses span {
+    display: block;
+    margin-bottom: 1rem;
+    color: var(--friend-clay);
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+  }
+
+  .scripture-block p {
+    font-size: clamp(1.25rem, 2.4vw, 2rem);
+    line-height: 1.55;
+    font-style: italic;
+  }
+
+  .after-fall {
+    grid-column: 1 / -1;
+    justify-self: end;
+    max-width: 20ch;
+    font-size: clamp(2.4rem, 6vw, 5.8rem);
+    line-height: 0.95;
+    color: var(--friend-green);
+  }
+
+  .history-spread {
+    background: var(--friend-cream);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .history-spread h2 {
+    max-width: 12ch;
+  }
+
+  .history-rail {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    border-top: 1px solid rgba(18, 17, 13, 0.18);
+    border-bottom: 1px solid rgba(18, 17, 13, 0.18);
+    margin-top: 3rem;
+  }
+
+  .history-rail div {
+    padding: 2rem 1.4rem;
+    border-right: 1px solid rgba(18, 17, 13, 0.14);
+  }
+
+  .history-rail div:last-child {
+    border-right: 0;
+  }
+
+  .history-rail span {
+    display: block;
+    margin-bottom: 1rem;
+    color: var(--friend-clay);
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+  }
+
+  .history-rail p {
+    font-size: clamp(1rem, 1.55vw, 1.18rem);
+    line-height: 1.68;
+    color: rgba(18, 17, 13, 0.72);
+  }
+
+  .history-close {
+    max-width: 58ch;
+    margin-top: 2.5rem;
+    font-size: clamp(1.18rem, 2vw, 1.5rem);
+    line-height: 1.68;
+    color: var(--friend-green);
+  }
+
+  .john-spread {
+    display: grid;
+    grid-template-columns: minmax(0, 0.58fr) minmax(0, 0.9fr);
+    gap: clamp(2.5rem, 6vw, 6rem);
+    align-items: center;
+    background: var(--friend-green-deep);
+    color: var(--friend-cream);
+  }
+
+  .john-header h2 {
+    color: var(--friend-cream);
+  }
+
+  .john-copy {
+    max-width: 46ch;
+    margin-top: 2rem;
+    color: rgba(247, 240, 226, 0.72);
+    font-size: clamp(1.05rem, 1.8vw, 1.28rem);
+    line-height: 1.72;
+  }
+
+  .john-copy p + p {
+    margin-top: 1rem;
+  }
+
+  .john-verse {
+    background: rgba(247, 240, 226, 0.06);
+    padding: clamp(2rem, 4vw, 3rem);
+    border-left-color: var(--friend-gold);
+    box-shadow: inset 0 0 0 1px rgba(247, 240, 226, 0.08);
+  }
+
+  .john-verse p {
+    font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+    line-height: 1.55;
+    font-style: italic;
+    color: rgba(247, 240, 226, 0.9);
+  }
+
+  .john-bottom {
+    grid-column: 1 / -1;
+    justify-self: end;
+    max-width: 16ch;
+    font-size: clamp(2.3rem, 6vw, 6rem);
+    line-height: 0.96;
+    color: var(--friend-gold);
+  }
+
+  .lord-spread {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(240px, 0.48fr);
+    gap: clamp(2.5rem, 7vw, 7rem);
+    align-items: center;
+    background: var(--friend-ink);
+    color: var(--friend-cream);
+  }
+
+  .lord-spread .body-copy {
+    color: rgba(247, 240, 226, 0.74);
+  }
+
+  .reverence-stamp {
+    color: var(--friend-gold);
+    font-size: clamp(2.2rem, 5vw, 5rem);
+    line-height: 0.98;
+    font-style: italic;
+    border-top: 1px solid rgba(199, 157, 63, 0.45);
+    padding-top: 1.5rem;
+  }
+
+  .cross-spread {
+    background: #2b1712;
+    color: var(--friend-cream);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .cross-spread h2 {
+    max-width: 13ch;
+  }
+
+  .cross-layout {
+    display: grid;
+    grid-template-columns: minmax(260px, 0.7fr) minmax(120px, 0.24fr) minmax(0, 0.7fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+    margin-top: 3rem;
+  }
+
+  .cross-layout blockquote p {
+    font-size: clamp(1.3rem, 2.6vw, 2.1rem);
+    line-height: 1.45;
+    font-style: italic;
+  }
+
+  .cross-mark {
+    width: min(12vw, 7rem);
+    height: min(28vw, 17rem);
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .cross-mark::before,
+  .cross-mark::after {
+    content: '';
+    position: absolute;
+    background: var(--friend-gold);
+    opacity: 0.82;
+  }
+
+  .cross-mark::before {
+    width: 22%;
+    height: 100%;
+    left: 39%;
+  }
+
+  .cross-mark::after {
+    width: 100%;
+    height: 13%;
+    top: 28%;
+    left: 0;
+  }
+
+  .cross-copy {
+    font-size: clamp(1.05rem, 1.7vw, 1.28rem);
+    line-height: 1.72;
+    color: rgba(247, 240, 226, 0.76);
+  }
+
+  .cross-copy p + p {
+    margin-top: 1rem;
+  }
+
+  .calvary-line {
+    margin-top: 3rem;
+    max-width: 24ch;
+    font-size: clamp(2rem, 4.6vw, 4.8rem);
+    line-height: 1.03;
+    color: var(--friend-gold);
+  }
+
+  .practice-spread {
+    background: var(--friend-paper);
+  }
+
+  .practice-spread h2 {
+    max-width: 14ch;
+  }
+
+  .practice-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    background: rgba(18, 17, 13, 0.16);
+    margin-top: 3rem;
+  }
+
+  .practice-grid p {
+    background: var(--friend-paper);
+    padding: 1.8rem;
+    font-size: clamp(1rem, 1.5vw, 1.18rem);
+    line-height: 1.68;
+    color: rgba(18, 17, 13, 0.74);
+  }
+
+  .practice-verses {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(2rem, 5vw, 5rem);
+    margin-top: 3rem;
+  }
+
+  .practice-verses p {
+    font-size: clamp(1.1rem, 2vw, 1.45rem);
+    line-height: 1.55;
+    font-style: italic;
+  }
+
+  .faith-spread {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(240px, 0.4fr);
+    gap: clamp(2rem, 6vw, 6rem);
+    align-items: center;
+    background:
+      linear-gradient(90deg, rgba(247, 240, 226, 0.95), rgba(247, 240, 226, 0.75)),
+      radial-gradient(circle at 88% 50%, rgba(199, 157, 63, 0.24), transparent 34%);
+  }
+
+  .faith-note {
+    border-color: rgba(20, 61, 51, 0.35);
+  }
+
+  .faith-note span {
+    color: var(--friend-green);
+  }
+
+  .close-spread {
+    min-height: 86vh;
+    background: var(--friend-green-deep);
+    color: var(--friend-cream);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .close-spread h2 {
+    max-width: 12ch;
+    margin: 0 auto;
+  }
+
+  .close-copy {
+    max-width: 54ch;
+    margin-top: 2.5rem;
+    color: rgba(247, 240, 226, 0.76);
+    font-size: clamp(1.1rem, 1.9vw, 1.35rem);
+    line-height: 1.75;
+  }
+
+  .close-copy p + p {
+    margin-top: 1rem;
+  }
+
+  .final-line {
+    margin-top: 3rem;
+    color: var(--friend-gold);
+    font-size: clamp(2.3rem, 6vw, 6.5rem);
+    line-height: 0.95;
+    font-style: italic;
+  }
+
+  .colophon {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(247, 240, 226, 0.16);
+    color: rgba(247, 240, 226, 0.42);
+    font-size: 0.58rem;
+    letter-spacing: 0.22em;
+  }
+
+  @media (max-width: 920px) {
+    .issue-masthead,
+    .hero-spread,
+    .ache-spread,
+    .personal-spread,
+    .garden-spread,
+    .john-spread,
+    .lord-spread,
+    .cross-layout,
+    .faith-spread {
+      grid-template-columns: 1fr;
+    }
+
+    .issue-masthead {
+      align-items: start;
+    }
+
+    .masthead-line {
+      display: none;
+    }
+
+    .issue-meta {
+      justify-content: flex-start;
+    }
+
+    .room-scene {
+      min-height: 52vh;
+    }
+
+    .personal-rule {
+      width: 100%;
+      height: 1px;
+    }
+
+    .history-rail,
+    .practice-grid,
+    .practice-verses,
+    .thesis-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .history-rail div {
+      border-right: 0;
+      border-bottom: 1px solid rgba(18, 17, 13, 0.14);
+    }
+
+    .history-rail div:last-child {
+      border-bottom: 0;
+    }
+
+    .john-bottom,
+    .after-fall {
+      justify-self: start;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .spread {
+      min-height: auto;
+      padding: 4rem 1.35rem;
+    }
+
+    h1 {
+      font-size: clamp(4.4rem, 22vw, 7rem);
+    }
+
+    h2 {
+      font-size: clamp(2.75rem, 15vw, 5rem);
+    }
+
+    .body-copy {
+      font-size: 1.1rem;
+    }
+
+    .spread-number {
+      font-size: 8rem;
+      top: 1rem;
+      right: 1rem;
+    }
+
+    .table-top {
+      left: 18%;
+      right: 18%;
+    }
+
+    .chair {
+      width: 23%;
+    }
+
+    .chair-left {
+      left: 4%;
+    }
+
+    .chair-right {
+      right: 4%;
+    }
+
+    .open-bible {
+      width: 54%;
+    }
+  }
+</style>

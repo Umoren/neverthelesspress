@@ -1,0 +1,157 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const issues = (await getCollection('issues')).sort(
+  (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime(),
+);
+const nextIssueNumber = Math.max(...issues.map((issue) => issue.data.issueNumber)) + 1;
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  }).format(date);
+---
+
+<BaseLayout title="Archive — Nevertheless" description="The published archive of Nevertheless Press." path="/archive">
+  <main class="archive-shell">
+    <section class="archive-hero">
+      <p class="kicker">Archive</p>
+      <h1>Every issue lives here.</h1>
+      <p class="lede">
+        The plan is simple: four sermon-derived issues a month, then one shorter letter or notebook piece. The gospel
+        center stays the same. The form changes with the material.
+      </p>
+    </section>
+
+    <section class="archive-grid">
+      {issues.map((issue) => (
+        <a class="issue-card" href={`/${issue.slug}`}>
+          <div class="issue-card-top">
+            <span>Issue No. {String(issue.data.issueNumber).padStart(3, '0')}</span>
+            <span>{formatDate(issue.data.publishDate)}</span>
+          </div>
+          <h2>{issue.data.title}</h2>
+          <p>{issue.data.description}</p>
+          <div class="issue-meta">
+            <span>{issue.data.readTime}</span>
+            <span>{issue.data.label}</span>
+          </div>
+        </a>
+      ))}
+
+      <div class="issue-card issue-card-muted">
+        <div class="issue-card-top">
+          <span>Issue No. {String(nextIssueNumber).padStart(3, '0')}</span>
+          <span>In progress</span>
+        </div>
+        <h2>More is coming soon.</h2>
+        <p>The next issues will begin as source material, then get rewritten into publication copy and shaped into their own spreads.</p>
+        <div class="issue-meta">
+          <span>Workflow active</span>
+          <span>Issue in development</span>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .archive-shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 5rem 2rem 6rem;
+  }
+
+  .archive-hero {
+    max-width: 54rem;
+    margin-bottom: 4rem;
+  }
+
+  .kicker,
+  .issue-card-top,
+  .issue-meta {
+    font-family: 'Space Mono', monospace;
+    text-transform: uppercase;
+  }
+
+  .kicker {
+    font-size: 0.68rem;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+  }
+
+  h1,
+  h2 {
+    font-family: 'Fraunces', serif;
+    letter-spacing: -0.02em;
+  }
+
+  h1 {
+    font-size: clamp(3.5rem, 10vw, 8rem);
+    line-height: 0.9;
+    margin: 0 0 1.5rem;
+  }
+
+  .lede {
+    max-width: 42ch;
+    font-size: clamp(1.15rem, 2.1vw, 1.45rem);
+    line-height: 1.7;
+    color: var(--cream-mid);
+    font-style: italic;
+  }
+
+  .archive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .issue-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 2rem;
+    text-decoration: none;
+    border: 1px solid rgba(201, 168, 76, 0.18);
+    background: rgba(245, 240, 232, 0.03);
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .issue-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(201, 168, 76, 0.38);
+    background: rgba(245, 240, 232, 0.05);
+  }
+
+  .issue-card-top,
+  .issue-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    color: var(--cream-low);
+  }
+
+  h2 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 0.95;
+  }
+
+  .issue-card p {
+    margin: 0;
+    color: var(--cream-mid);
+    font-size: 1.08rem;
+    line-height: 1.75;
+  }
+
+  .issue-card-muted {
+    border-style: dashed;
+    background: rgba(201, 168, 76, 0.05);
+  }
+</style>
